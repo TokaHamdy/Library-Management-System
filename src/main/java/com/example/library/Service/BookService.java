@@ -21,14 +21,25 @@ public class BookService {
     }
 
     // Method to find a book by id
-    public Optional<Book> getBookById(long id){
-        return bookRepository.findById(id);
+    public Book getBookById(long id){
+        return bookRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Book not Found with id: "+ id));
     }
     // Method to save a book
-    public Book saveBook(Book book){
+    public Book createBook(Book book){
         return bookRepository.save(book);
     }
 
+    // Method to update a book
+    public Book updateBook(long id, Book updatedBook){
+        Book afterUpdate= getBookById(id);
+        afterUpdate.setAuthor(updatedBook.getAuthor());
+        afterUpdate.setTitle(updatedBook.getTitle());
+        afterUpdate.setIsbn(updatedBook.getIsbn());
+
+        return bookRepository.save(afterUpdate);
+
+    }
     // Method to delete a book by id
     public void deleteBook(long id){
         bookRepository.deleteById(id);

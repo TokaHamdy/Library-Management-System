@@ -6,10 +6,6 @@ import com.example.library.Repository.BorrowBookRepository;
 import com.example.library.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.swing.plaf.PanelUI;
 import java.util.List;
 
 @Service
@@ -26,6 +22,7 @@ public class UserService {
 
     // Create a new user
     public User createUser(User user){
+
         return userRepository.save(user);
     }
 
@@ -38,5 +35,12 @@ public class UserService {
     // Get books borrowed by a user
     public List<BorrowBooks> getBorrowedBooksByUserId(long id){
         return  borrowBookRepository.findByUserIdAndStatus(id,"BORROWED");
+    }
+
+
+
+    // Method to check if a user exists by email
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
     }
 }

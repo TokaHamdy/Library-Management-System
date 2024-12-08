@@ -9,17 +9,18 @@ import java.time.LocalDate;
 @Table(name = "books")
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     @Column(nullable = false)
     private String category; // e.g., Fiction, Non-fiction, Science, etc.
 
+    @Setter
+    @Getter
     @Column(nullable = false)
     private String title;
 
@@ -63,6 +64,14 @@ public class Book {
         return isbn;
     }
 
+    public LocalDate getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(LocalDate publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
@@ -73,13 +82,5 @@ public class Book {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public LocalDate getPublicationDate() {
-        return publicationDate;
-    }
-
-    public void setPublicationDate(LocalDate publicationDate) {
-        this.publicationDate = publicationDate;
     }
 }

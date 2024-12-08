@@ -73,7 +73,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.30</version> <!-- Update version if needed -->
+			<version>1.18.36</version> <!-- Update version if needed -->
 			<optional>true</optional>
 		</dependency>
 		<dependency>

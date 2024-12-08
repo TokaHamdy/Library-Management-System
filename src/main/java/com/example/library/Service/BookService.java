@@ -3,8 +3,11 @@ package com.example.library.Service;
 import com.example.library.Entity.Book;
 import com.example.library.Repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +46,9 @@ public class BookService {
     // Method to delete a book by id
     public void deleteBook(long id){
         bookRepository.deleteById(id);
-
+    }
+    public Page<Book> advancedSearch(String author, String title, String category, LocalDate startDate, LocalDate endDate, Pageable pageable) {
+        return bookRepository.advancedSearch(author, title, category, startDate, endDate, pageable);
     }
 
-}
+    }

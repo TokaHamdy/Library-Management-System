@@ -3,6 +3,8 @@ package com.example.library.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "books")
 @NoArgsConstructor
@@ -16,6 +18,9 @@ public class Book {
     private Long id;
 
     @Column(nullable = false)
+    private String category; // e.g., Fiction, Non-fiction, Science, etc.
+
+    @Column(nullable = false)
     private String title;
 
     @Column(nullable = false)
@@ -26,7 +31,18 @@ public class Book {
 
     @Column(nullable = false)
     private String status; // "AVAILABLE" or "BORROWED"
-    // Getters and Setters
+
+    @Column(nullable = false)
+    private LocalDate publicationDate; // Publication date of the book
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -57,5 +73,13 @@ public class Book {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public LocalDate getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(LocalDate publicationDate) {
+        this.publicationDate = publicationDate;
     }
 }

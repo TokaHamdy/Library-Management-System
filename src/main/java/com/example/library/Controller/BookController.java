@@ -3,10 +3,15 @@ package com.example.library.Controller;
 import com.example.library.Entity.Book;
 import com.example.library.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController 
@@ -49,4 +54,20 @@ public class BookController {
         bookService.deleteBook(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/advanced-search")
+    public Page<Book> advancedSearch(
+            @RequestParam(required = false) String author,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+            @RequestParam(defaultValue = "0") int page, // default page number
+            @RequestParam(defaultValue = "10") int size) { // default page size
+
+        Pageable pageable = PageRequest.of(page, size); // Create Pageable object
+        return bookService.advancedSearch(author, title, category, startDate, endDate, pageable);
+    }
+
+
 }

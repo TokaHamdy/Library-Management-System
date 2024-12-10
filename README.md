@@ -39,6 +39,10 @@ Make sure you have the following installed:
  - Run the project
 
 ---
+### 4️⃣ Access Swagger UI
+- Open your browser and navigate to [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html) to explore the API documentation.
+
+---
 
 ### 🛠️ Code Features
 - **Layered Architecture**: Utilized Spring Boot’s MVC pattern for a clean separation of concerns.
